@@ -1,0 +1,26 @@
+# Fullerton Plumbing Referral
+> Independent phone-only plumbing referral guide for Fullerton, CA and North Orange County.
+
+## Summary
+Fullerton Plumbing Referral provides decision guides and introduces residential and commercial callers to licensed independent plumbing contractors serving Fullerton, CA and surrounding communities.
+
+## Core Services
+- Drain Cleaning & Hydro-Jetting: /services/drain-cleaning/
+- Sewer Line Inspection & Lateral Repair: /services/sewer-repair/
+- Slab & Water Leak Detection: /services/leak-detection/
+- Pipe Repair & Water Main Service: /services/pipe-water-line-repair/
+- Water Heater Repair & Tankless Installation: /services/water-heaters/
+- Fixtures, Faucets & Bathroom Remodel Rough-ins: /services/fixtures-remodel-plumbing/
+- Gas Lines & Appliance Piping: /services/gas-line-plumbing/
+- Commercial Plumbing & Multi-Family Systems: /services/commercial-plumbing/
+- Specialty Plumbing (Treatment, Sump Pumps, Backflow): /services/specialty-plumbing/
+
+## Coverage Areas
+- Primary Residential ZIP Codes: 92831, 92832, 92833, 92835
+- Fullerton Districts: Downtown/Central, Sunny Hills/North, Amerige Heights/West, East Fullerton/CSUF, Raymond Hills/Golden Hill, South Fullerton/Valencia Mesa
+- Neighboring Municipalities: Brea, Placentia, Anaheim, Buena Park, La Habra
+
+## Operational Transparency
+- Referral Introduction Model: /how-referrals-work/
+- Questions & Comparison Matrix: /plumbing-guides/
+- Contact & Phone Verification Status: /contact/
