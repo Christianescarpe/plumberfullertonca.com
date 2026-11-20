@@ -1,4 +1,23 @@
 User-agent: *
-Disallow: /
+Allow: /
 
-# Private preview. This file is not a production sitemap policy.
+# AI Bots (AEO Guidance)
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://plumberfullertonca.com/sitemap.xml

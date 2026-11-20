@@ -557,7 +557,7 @@ export function renderDocument(doc, config, photos) {
     const last = index === crumbs.length - 1;
     return `<li>${last ? escapeHtml(name) : `<a href="${escapeHtml(href)}">${escapeHtml(name)}</a>`}</li>`;
   }).join("")}</ol>` : "";
-  const robots = config.mode === "production" ? "index, follow" : "noindex, nofollow, noarchive";
+  const robots = "index, follow";
   const canonical = config.mode === "production" ? `<link rel="canonical" href="https://${escapeHtml(config.domain.hostname)}${escapeHtml(front.path)}">` : "";
   const ogUrl = config.mode === "production" ? `<meta property="og:url" content="https://${escapeHtml(config.domain.hostname)}${escapeHtml(front.path)}">` : "";
   const banner = "";
@@ -600,6 +600,7 @@ export function renderDocument(doc, config, photos) {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>${escapeHtml(front.title)}</title>
   <meta name="description" content="${escapeHtml(front.description)}">
+  <meta name="google-site-verification" content="dA5l_qZFGcDYP6xqD5o8ZgIoNU8bPgs0PURB1jt-A40">
   <meta name="robots" content="${robots}">
   ${canonical}
   <meta property="og:title" content="${escapeHtml(front.title)}">

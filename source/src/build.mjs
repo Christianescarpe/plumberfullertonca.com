@@ -218,19 +218,15 @@ const notFound = `<!DOCTYPE html>
 `;
 fs.writeFileSync(path.join(outDir, "404.html"), notFound);
 
-const robots = config.mode === "production"
-  ? `User-agent: *\nAllow: /\n\n# AI Bots (AEO Guidance)\nUser-agent: GPTBot\nAllow: /\n\nUser-agent: OAI-SearchBot\nAllow: /\n\nUser-agent: ChatGPT-User\nAllow: /\n\nUser-agent: ClaudeBot\nAllow: /\n\nUser-agent: PerplexityBot\nAllow: /\n\nUser-agent: Google-Extended\nAllow: /\n\nSitemap: https://${config.domain.hostname}/sitemap.xml\n`
-  : `User-agent: *\nDisallow: /\n\n# Private preview. This file is not a production sitemap policy.\n`;
+const robots = `User-agent: *\nAllow: /\n\n# AI Bots (AEO Guidance)\nUser-agent: GPTBot\nAllow: /\n\nUser-agent: OAI-SearchBot\nAllow: /\n\nUser-agent: ChatGPT-User\nAllow: /\n\nUser-agent: ClaudeBot\nAllow: /\n\nUser-agent: PerplexityBot\nAllow: /\n\nUser-agent: Google-Extended\nAllow: /\n\nSitemap: https://${config.domain.hostname}/sitemap.xml\n`;
 fs.writeFileSync(path.join(outDir, "robots.txt"), robots);
 
-const sitemap = config.mode === "production"
-  ? `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${expected.map((url) => `  <url><loc>https://${config.domain.hostname}${url}</loc></url>`).join("\n")}\n</urlset>\n`
-  : `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n<!-- Private preview: no URLs are listed until a verified production domain is configured. -->\n</urlset>\n`;
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${expected.map((url) => `  <url><loc>https://${config.domain.hostname}${url}</loc></url>`).join("\n")}\n</urlset>\n`;
 fs.writeFileSync(path.join(outDir, "sitemap.xml"), sitemap);
 
 const htaccess = config.mode === "production"
   ? `# Production rules generated with a verified domain. Review before upload.\nOptions -Indexes\nDirectoryIndex index.html\nErrorDocument 404 /404.html\n<IfModule mod_rewrite.c>\nRewriteEngine On\nRewriteCond %{HTTPS} !=on\nRewriteCond %{HTTP:X-Forwarded-Proto} !=https\nRewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]\nRewriteCond %{REQUEST_FILENAME} -d\nRewriteRule ^(.+[^/])$ /$1/ [R=301,L]\n</IfModule>\n`
-  : `# Private preview. Do not publish this folder.\nOptions -Indexes\nDirectoryIndex index.html\nErrorDocument 404 /404.html\n<IfModule mod_headers.c>\nHeader set X-Robots-Tag "noindex, nofollow, noarchive"\n</IfModule>\n`;
+  : `# Indexable preview rules.\nOptions -Indexes\nDirectoryIndex index.html\nErrorDocument 404 /404.html\n`;
 fs.writeFileSync(path.join(outDir, ".htaccess"), htaccess);
 
 // AEO / LLM Context File (llms.txt)

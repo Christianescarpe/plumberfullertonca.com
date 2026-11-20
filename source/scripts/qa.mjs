@@ -30,10 +30,10 @@ if (pages.length !== 28) fail(`Expected 28 index.html pages, found ${pages.lengt
 if (!htmlFiles.some((file) => file.endsWith(`${path.sep}404.html`))) fail("Missing 404.html");
 
 const robots = fs.readFileSync(path.join(dist, "robots.txt"), "utf8");
-if (!/Disallow:\s*\//.test(robots)) fail("Preview robots.txt does not disallow /");
-if (/^Allow:\s*\/$/m.test(robots)) fail("Preview robots.txt allows crawling");
+if (/Disallow:\s*\//.test(robots)) fail("robots.txt disallows /");
+if (!/^Allow:\s*\/$/m.test(robots)) fail("robots.txt does not allow crawling");
 const sitemap = fs.readFileSync(path.join(dist, "sitemap.xml"), "utf8");
-if (sitemap.includes("<loc>")) fail("Preview sitemap lists URLs");
+if (!sitemap.includes("<loc>")) fail("sitemap.xml missing URLs");
 
 // Permitted public utility / safety emergency numbers in Fullerton
 const allowTel = new Set([
@@ -62,7 +62,10 @@ for (const file of htmlFiles) {
   const html = fs.readFileSync(file, "utf8");
   if (!html.startsWith("<!DOCTYPE html>")) fail(`${url} missing doctype`);
   if (!html.includes('lang="en"')) fail(`${url} missing lang`);
-  if (!html.includes('content="noindex, nofollow, noarchive"')) fail(`${url} missing preview robots`);
+  if (url !== "/404.html") {
+    if (!html.includes('content="index, follow"')) fail(`${url} missing indexable robots meta`);
+    if (!html.includes('content="dA5l_qZFGcDYP6xqD5o8ZgIoNU8bPgs0PURB1jt-A40"')) fail(`${url} missing google-site-verification meta`);
+  }
   if (/rel="canonical"/i.test(html)) fail(`${url} has a canonical in preview`);
   if (/<form[\s>]/i.test(html)) fail(`${url} contains a form`);
   if (/FAQPage|LocalBusiness|aggregateRating|reviewCount/i.test(html)) fail(`${url} has forbidden schema`);
