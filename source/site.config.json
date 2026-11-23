@@ -14,9 +14,9 @@
     "verified": false
   },
   "phone": {
-    "display": "",
-    "e164": "",
-    "verified": false
+    "display": "(714) 882-1868",
+    "e164": "+17148821868",
+    "verified": true
   },
   "hours": {
     "summary": "",

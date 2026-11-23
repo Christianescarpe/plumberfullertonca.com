@@ -20,11 +20,15 @@ export function escapeHtml(value) {
     .replaceAll('"', "&quot;");
 }
 
+function hasLivePhone(config) {
+  return canDial(config) || Boolean(config.phone?.verified && config.phone?.display && config.phone?.e164);
+}
+
 function fillTokens(text, config) {
   const brand = config.brand.publicName;
   const live = canDial(config);
   const operator = live ? config.brand.operatorLegalName : "not published";
-  const phone = live ? config.phone.display : "phone setup pending";
+  const phone = hasLivePhone(config) ? config.phone.display : "phone setup pending";
   const hours = config.mode === "production" && config.hours.verified
     ? config.hours.summary
     : "Answering hours are not confirmed";
@@ -464,7 +468,7 @@ function jsonLd(doc, config) {
 const REFERRAL_LINE = "Independent referral service. Calls connect to third-party providers; availability and pricing vary.";
 
 function callControl(config, className) {
-  if (canDial(config)) {
+  if (hasLivePhone(config)) {
     const hours = config.hours?.verified ? `<p class="referral-line">${escapeHtml(config.hours.summary)} Pacific Time.</p>` : "";
     return `<a class="call-btn ${className}" href="tel:${escapeHtml(config.phone.e164)}">Call ${escapeHtml(config.phone.display)}</a>${hours}`;
   }

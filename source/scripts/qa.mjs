@@ -37,6 +37,7 @@ if (!sitemap.includes("<loc>")) fail("sitemap.xml missing URLs");
 
 // Permitted public utility / safety emergency numbers in Fullerton
 const allowTel = new Set([
+  "tel:+17148821868",
   "tel:+17147386897",
   "tel:+17147386890",
   "tel:+18004272200",
@@ -154,7 +155,7 @@ for (const [from, href] of hrefs) {
 }
 
 const home = fs.readFileSync(path.join(dist, "index.html"), "utf8");
-if (!home.includes("Phone setup pending")) fail("Home does not show the pending phone state");
+if (!home.includes("tel:+17148821868") || !home.includes("(714) 882-1868")) fail("Home does not show the active phone number");
 if (!home.includes("<h1>Plumbing help in Fullerton, CA</h1>")) fail("Home missing its helpful H1");
 if (!home.includes("Plumber Fullerton CA")) fail("Home title missing 'Plumber Fullerton CA'");
 const servicePages = [...titles.values()].filter((url) => url.startsWith("/services/") && url !== "/services/");

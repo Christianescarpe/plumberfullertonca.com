@@ -17,7 +17,7 @@ heroKind: illustrative
 Fullerton Plumbing Referral operates as a telephone-first contractor introduction desk for residential homeowners, landlords, and commercial facility managers in Fullerton, California. Our system is designed without web lead forms, email queues, or automated chat bots, ensuring property owners connect directly with real service dispatchers who understand local plumbing requirements.
 
 :::if-preview
-Our telephone routing system is currently undergoing carrier integration and live dispatch testing. During this preview period, telephone controls remain inactive and do not place live outbound calls. When operational dispatch launches, verified telephone numbers and Pacific Time operating hours will be published across this page.
+To inquire about plumbing contractor availability in your Fullerton neighborhood, call {{phone}}. Have your property address and a clear summary of your plumbing issue ready for the intake operator.
 :::
 
 :::if-production

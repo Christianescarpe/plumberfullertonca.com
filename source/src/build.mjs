@@ -212,7 +212,7 @@ const notFound = `<!DOCTYPE html>
       </ul>
     </div></div>
   </article></main>
-  <div class="sticky-call"><p class="call-pending"><strong>Phone setup pending</strong><span>This preview does not place a call.</span></p></div>
+  <div class="sticky-call">${config.phone?.verified && config.phone?.display && config.phone?.e164 ? `<a class="call-btn sticky-btn" href="tel:${config.phone.e164}">Call ${config.phone.display}</a>` : `<p class="call-pending"><strong>Phone setup pending</strong><span>This preview does not place a call.</span></p>`}</div>
 </body>
 </html>
 `;
